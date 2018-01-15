@@ -66,13 +66,13 @@
     activated() {
       this.slider.enable()
       let pageIndex = this.slider.getCurrentPage().pageX
-      if (pageIndex > this.dots.length) {
-        pageIndex = pageIndex % this.dots.length
-      }
+//      if (pageIndex > this.dots.length) {
+//        pageIndex = pageIndex % this.dots.length
+//      }
       this.slider.goToPage(pageIndex, 0, 0)
-      if (this.loop) {
-        pageIndex -= 1
-      }
+//      if (this.loop) {
+//        pageIndex -= 1
+//      }
       this.currentPageIndex = pageIndex
       if (this.autoPlay) {
         this._play()
@@ -117,15 +117,11 @@
           scrollX: true,
           scrollY: false,
           momentum: false, // 惯性
-          snap: true,
-          snapLoop: this.loop,
-          snapThreshold: 0.3,
-          snapSpeed: 400
-//          snap: {
-//            loop: this.loop,
-//            threshold: 0.3,
-//            speed: 400
-//          }
+          snap: {
+            loop: this.loop,
+            threshold: 0.3,
+            speed: 400
+          }
         })
         this.slider.on('scrollEnd', this._onScrollEnd)
 
@@ -143,25 +139,26 @@
       },
       _onScrollEnd() {
         let pageIndex = this.slider.getCurrentPage().pageX
-        if (this.loop) {
-          pageIndex -= 1
-        }
+//        if (this.loop) {
+//          pageIndex -= 1
+//        }
         this.currentPageIndex = pageIndex
         if (this.autoPlay) {
           this._play()
         }
       },
       _play() {
-        let pageIndex = this.slider.getCurrentPage().pageX + 1
+//        let pageIndex = this.slider.getCurrentPage().pageX + 1
         clearTimeout(this.timer)
         this.timer = setTimeout(() => {
-          this.slider.goToPage(pageIndex, 0, 400)
+//          this.slider.goToPage(pageIndex, 0, 400)
+          this.slider.next()
         }, this.interval)
       }
     }
   }
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
 
   .slider {

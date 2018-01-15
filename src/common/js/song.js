@@ -39,6 +39,7 @@ export default class Song {
           resolve(this.lyric)
         } else {
           // reject('no lyric')
+          reject(new Error('no lyric'))
         }
       })
     })

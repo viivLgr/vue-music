@@ -6,6 +6,67 @@ var app = express()
 
 var apiRoutes = express.Router()
 
+apiRoutes.get('/getDiscListH', function (req, res) {
+  var url = 'http://ustbhuangyi.com/music/api/getDiscList'
+  axios.get(url, {
+    headers: {
+      referer: 'https://ustbhuangyi.com/',
+      host: 'ustbhuangyi.com'
+    },
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+apiRoutes.get('/getCdInfoH', function (req, res) {
+  var url = 'http://ustbhuangyi.com/music/api/getCdInfo'
+  axios.get(url, {
+    headers: {
+      referer: 'http://ustbhuangyi.com/',
+      host: 'ustbhuangyi.com'
+    },
+    params: req.query
+  }).then((response) => {
+    var ret = response.data
+    if (typeof ret === 'string') {
+      var reg = /^\w+\(({.+})\)$/
+      var matches = ret.match(reg)
+      if (matches) {
+        ret = JSON.parse(matches[1])
+      }
+    }
+    res.json(ret)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+apiRoutes.get('/lyricH', function (req, res) {
+  var url = 'http://ustbhuangyi.com/music/api/lyric'
+  axios.get(url, {
+    headers: {
+      referer: 'http://ustbhuangyi.com/',
+      host: 'ustbhuangyi.com'
+    },
+    params: req.query
+  }).then((response) => {
+    var ret = response.data
+    if (typeof ret === 'string') {
+      var reg = /^\w+\(({.+})\)$/
+      var matches = response.data.match(reg)
+      if (matches) {
+        ret = JSON.parse(matches[1])
+      }
+    }
+    res.json(ret)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
 apiRoutes.get('/getDiscList', function (req, res) {
   var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
   axios.get(url, {
