@@ -9,7 +9,7 @@
           <div class="hot-key">
             <h2 class="title">热门搜索</h2>
             <ul>
-              <li @click="addQuery(key.k)" v-for="key in hotkey" class="item">{{key.k}}</li>
+              <li @click="addQuery(key.k)" v-for="(key,i) in hotkey" :key="i" class="item">{{key.k}}</li>
             </ul>
           </div>
           <div class="search-history" v-show="searchHistory.length">

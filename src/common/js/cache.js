@@ -11,13 +11,16 @@ const FAVORITE_MAX_LENGTH = 200
 
 function insertArray(arr, val, compare, maxLen) {
   const index = arr.findIndex(compare)
+  // 索引为0，已存在不进行存储操作
   if (index === 0) {
     return
   }
+  // 索引大于0，删除后面的，重新添加值
   if (index > 0) {
     arr.splice(index, 1)
   }
   arr.unshift(val)
+  // 若长度大于maxLen，则去掉最后的项
   if (maxLen && arr.length > maxLen) {
     arr.pop()
   }

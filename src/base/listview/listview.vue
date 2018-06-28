@@ -6,10 +6,10 @@
           @scroll="scroll"
           ref="listview">
     <ul>
-      <li v-for="group in data" class="list-group" ref="listGroup">
+      <li v-for="(group, index) in data" :key="index" class="list-group" ref="listGroup">
         <h2 class="list-group-title">{{group.title}}</h2>
         <ul>
-          <li v-for="item in group.items" class="list-group-item" @click="selectItem(item)">
+          <li v-for="(item, idx) in group.items" :key="idx" class="list-group-item" @click="selectItem(item)">
             <img class="avatar" v-lazy="item.avatar">
             <span class="name">{{item.name}}</span>
           </li>
@@ -19,6 +19,7 @@
     <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
       <ul>
         <li v-for="(item,index) in shortcutList"
+            :key="index"
             :data-index="index"
             class="item"
             :class="{'current': currentIndex === index}"
