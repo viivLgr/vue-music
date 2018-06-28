@@ -7,7 +7,8 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export function getLyric(mid) {
   // const url = debug ? '/api/lyric' : 'http://ustbhuangyi.com/music/api/lyric'
-  const url = debug ? '/api/lyric' : '/api/lyricH'
+  // const url = debug ? '/api/lyric' : '/api/lyricH'
+  const url = debug ? '/api/lyric' : 'http://vuemusic.viivlgr.cn/music/api/lyric'
 
   const data = Object.assign({}, commonParams, {
     songmid: mid,
